@@ -1,0 +1,75 @@
+<DOCTYPE html>
+    <html>
+    <head>
+        <title>MineMouse Clock</title>
+        <link rel="shortcut icon" href="mini.png">
+        <link rel="stylesheet" href="bootstrap.css">
+        <link rel="stylesheet" href="bootstrap.min.css">
+    </head>
+    <style>
+        body{
+            background-image: url(chesapeake-wallpaper-tot761611sam-64_1000.jpg);
+        }
+        .clock{
+            width: 500px;
+            height: 500px;
+            border-radius: 100%;
+            background-image: url(clockface.png);
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: center;
+            margin-left: 50px;
+        }
+        .hand{
+            width: 140px;
+            height: 7px;
+            border: solid;
+            background-color: black;
+            border-radius: 3px;
+            margin-left: 90px;
+            margin-top: 250px;
+            position: absolute;
+            transform-origin: 100%;
+            transform: rotate(90deg);
+            transition: all 0.05sec;
+            transition-timing-function:cubic-bezier(0.1,2.7,0.58,1);
+        }
+    </style>
+    <body>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-3 col-sm-12 col-xs-12"></div>
+                <div class="clock col-md-6 col-sm-12 col-xs-12">
+                    <div class="hand hour-hand"></div>
+                    <div class="hand min-hand"></div>
+                    <div class="hand sec-hand"></div>
+                </div>
+                <div class="col-md-3 col-sm-12 col-xs-12">
+            </div>
+        </div>
+        </div>
+        
+        <script>
+            const second = document.querySelector('.sec-hand');
+            const mins = document.querySelector('.min-hand');
+            const hours = document.querySelector('.hour-hand');
+        function setdate()
+            {
+                const now = new Date();
+                const sec = now.getSeconds();
+                const secdegree = ((sec/60)*360)+90;
+                second.style.transform = "rotate(${secdegree}deg)" ;
+                console.log(sec);
+                
+                const min=now.getMinutes();
+                const mindegree = ((min/60)*360)+90;
+                mins.style.transform = "rotate(${mindegree}deg)";
+                
+                const hour=now.getHours();
+                const hourdegree = ((min/12)*360)+90;
+                hours.style.transform = "rotate(${hourdegree}deg)";
+            }
+            setInterval(setdate,1000);
+        </script>
+    </body>
+    </html>
